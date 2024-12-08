@@ -10,15 +10,15 @@ public class RoadStatusManagement {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("---------------------------------");
-            System.out.println("Welcome to Path-Finder");
-            System.out.println("---------------------------------");
-            System.out.println("1. Submit a Road Report");
-            System.out.println("2. View All Reports");
+            System.out.println("-----------------------------------");
+            System.out.println("      Welcome to Path-Finder");
+            System.out.println("-----------------------------------");
+            System.out.println("1. Submit a Path Info Report");
+            System.out.println("2. View All Path Info Reports");
             System.out.println("3. Admin: Update Road Status");
-            System.out.println("4. Exit");
-            System.out.println("---------------------------------");
-            System.out.print("Choose an option: ");
+            System.out.println("4. Exit Path-Finder");
+            System.out.println("===================================");
+            System.out.print("Choose an option(#): ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
@@ -31,19 +31,29 @@ public class RoadStatusManagement {
                     System.out.print("Enter road status (Closed, Damaged, Under Maintenance): ");
                     String status = scanner.nextLine();
                     reports.add(new RoadReportEntry(idCounter++, name, location, status, new Date()));
+                    System.out.println("===================================");
                     System.out.println("Report submitted successfully!");
+                    System.out.println("===================================");
                     break;
 
                 case 2:
-                    System.out.println("ALL REPORTS:");
+                    System.out.println("===================================");
+                    System.out.println("        PATH INFO REPORTS");
+                    System.out.println("===================================");
+
+                    if (reports.isEmpty()) {
+                        System.out.println("No reports available to view.");
+                        break;
+                    }
                     for (RoadReportEntry report : reports) {
                         report.displayDetails();
                     }
                     break;
 
                 case 3:
-                    System.out.println("Submitted Paths:");
-                    System.out.println("---------------------------------");
+                    System.out.println("===================================");
+                    System.out.println("            ADMIN PAGE");
+                    System.out.println("===================================");
                     // Display all reports before prompting for Post ID
                     if (reports.isEmpty()) {
                         System.out.println("No reports available to update.");
@@ -52,7 +62,7 @@ public class RoadStatusManagement {
                     for (RoadReportEntry report : reports) {
                         report.displayDetails(); // Show the details of each report
                     }
-                
+                    System.out.println("-----------------------------------");
                     System.out.print("Enter Post ID to update: ");
                     int postId = scanner.nextInt();
                     scanner.nextLine(); // Consume newline
@@ -64,10 +74,10 @@ public class RoadStatusManagement {
                     break;
                 
                 case 4:
-                    System.out.println("---------------------------------");
-                    System.out.println("See you later on the right Path!");
-                    System.out.println("---------------------------------");
-                    scanner.close();
+                System.out.println("-----------------------------------");
+                System.out.println("See you later on the right Path!");
+                System.out.println("-----------------------------------");
+                scanner.close();
                     return;
 
                 default:
